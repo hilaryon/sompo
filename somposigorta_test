@@ -1,0 +1,11 @@
+/* created for testing purpose */
+
+from http.client import HTTPSConnection
+from base64 import b64encode
+c = HTTPSConnection("www.somposigorta.com.tr")
+userAndPass = b64encode(b"test@somposigorta.com.tr:T123456M").decode("ascii")
+headers = { 'Authorization' : 'Basic %s' %  userAndPass }
+#baglan
+c.request('GET', '/', headers=headers)
+res = c.getresponse()
+data = res.read()  
